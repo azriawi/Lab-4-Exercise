@@ -6,7 +6,11 @@ package Exe4;
 	import java.net.ServerSocket;
 	import java.net.Socket;
 	import java.util.Scanner;
-
+	import java.io.BufferedReader;
+	import java.io.DataInputStream;
+	import java.io.DataOutputStream;
+	import java.io.InputStreamReader;
+	
 	public class server {
 		private static final String String = null;
 
@@ -15,16 +19,36 @@ package Exe4;
 			String words;
 			int count=0;
 			ServerSocket s1=new ServerSocket(8571);
-			Socket exe3=s1.accept();
-			Scanner sc=new Scanner(exe3.getInputStream());
 			
-			words=sc.nextLine();
+			//accept client request
+			Socket exe3=s1.accept();
+			
+		
+			
+			////create input stream, utk baca dari client
+			DataInputStream dataIn = new DataInputStream(exe3.getInputStream());
+			
+	
+			
+			//read data from client, pakai readUTF sebab String
+			words=dataIn.readUTF();
 			
 			//call method 
 			count=countWord(words); 
-			 
-			 PrintStream p=new PrintStream(exe3.getOutputStream());
-			 p.println(count);		 
+			
+			//Create output stream to send back to client
+			DataOutputStream dataOut = new DataOutputStream(exe3.getOutputStream());
+			
+			//send data kt client, pakai writeInt sebab integer
+			dataOut.writeInt(count);
+			dataOut.flush();
+			
+			//Close everything
+			s1.close();
+			exe3.close();
+			dataIn.close();
+			dataOut.close();
+				 
 			 }	
 
 

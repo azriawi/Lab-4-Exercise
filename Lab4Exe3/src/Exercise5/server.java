@@ -6,6 +6,8 @@ import java.io.IOException;
 	import java.net.Socket;
 	import java.util.Scanner;
 
+import com.sun.java.accessibility.util.Translator;
+
 	public class server 
 	{
 		private static final String String = null;
@@ -18,43 +20,22 @@ import java.io.IOException;
 			Socket exe3=s1.accept();
 			Scanner sc=new Scanner(exe3.getInputStream());
 			
+			Translator message = new Translator();
+			
 			words=sc.nextLine();
 			
-			//call method 
-			translated = Translate(words); 
+			
+			
+			
+			translated = "Selamat Pagi"; 
 			 
 			 PrintStream p=new PrintStream(exe3.getOutputStream());
 			 p.println(translated);		 
 			 }	
 
 
-	
+			
 			
 
-			public static String Translate(String text) 
-			{
-				
-				String [][] words = {{"Good morning","Selamat Pagi" },
-						{"Good night", "Selamat malam"},
-						{"How are you?", "Apa khabar?"},
-						{"Thank you","Terima kasih"},
-						{"Goodbye","Selamat tinggal"},
-						{"What's up?","Ada apa?"}};
-				
-				String translated = "" ;
-				for(int i = 0;i<words.length;i++) {
-					if(words[i][0].equalsIgnoreCase(text)) {
-						System.out.print("jumpa");
-						for(String word: words[i]) {
-							
-							translated += word+".";
-						
-						}
-						break;
-					}
-					
-				}
-				System.out.print("tak jumpa");
-				return translated;
-			}
+		
 		}

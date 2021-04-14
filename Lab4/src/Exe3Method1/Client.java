@@ -1,19 +1,16 @@
-package Exe4;
+package Exe3Method1;
 
-	import java.io.IOException;
-	import java.io.PrintStream;
-	import java.net.Socket;
-	import java.net.UnknownHostException;
-	import java.util.Scanner;
-	import java.io.DataInputStream;
-	import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.Scanner;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.net.InetAddress;
 	
-	import java.net.InetAddress;
-	
 
-
-
-	public class client {
+	public class Client {
 
 		public static void main(String args[]) throws UnknownHostException, IOException
 		{
@@ -23,7 +20,7 @@ package Exe4;
 			//create object, syntax for input
 			Scanner sc= new Scanner(System.in);
 			
-			Socket s = new Socket("127.0.0.1",8571);
+			Socket s = new Socket("127.0.0.1",4646);
 			
 			//create output stream, utk send ke server
 			DataOutputStream outputStream = new DataOutputStream(s.getOutputStream());
@@ -50,4 +47,5 @@ package Exe4;
 			System.out.println(textword);
 		}
 	}
+
 
